@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "tiny-customfilepicker": {
+    "tinymce-demo2": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tiny-customfilepicker",
+            "outputPath": "dist/tinymce-demo2",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -21,9 +21,11 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/demo"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -58,18 +60,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "tiny-customfilepicker:build"
+            "browserTarget": "tinymce-demo2:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "tiny-customfilepicker:build:production"
+              "browserTarget": "tinymce-demo2:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tiny-customfilepicker:build"
+            "browserTarget": "tinymce-demo2:build"
           }
         },
         "test": {
@@ -106,15 +108,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "tiny-customfilepicker:serve"
+            "devServerTarget": "tinymce-demo2:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "tiny-customfilepicker:serve:production"
+              "devServerTarget": "tinymce-demo2:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "tiny-customfilepicker"
+  "defaultProject": "tinymce-demo2"
 }

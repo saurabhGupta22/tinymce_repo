@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to tiny-customfilepicker!');
+    expect(page.getTitleText()).toEqual('Welcome to tinymce-demo2!');
   });
 
   afterEach(async () => {

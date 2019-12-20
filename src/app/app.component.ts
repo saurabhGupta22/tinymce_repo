@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TinymceSService } from './tinymce-s.service';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'tiny-customfilepicker';
+  title = 'tinymce-demo';
+
+  constructor(private tinyService:TinymceSService){}
+
+  ngOnInit(){
+    this.tinyService.doIt();
+  }
+  
+
 }
