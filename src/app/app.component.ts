@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TinymceSService } from './tinymce-s.service';
+import { TinymceSService } from './services/tinymce-s.service';
 
 
 @Component({

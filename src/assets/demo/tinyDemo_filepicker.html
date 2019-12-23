@@ -1,125 +1,28 @@
 <html>
 
 <head>
+
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- <script src="tinyDemo.js"></script> -->
-    <script>
-        window.addEventListener('message', function (event) {
-            console.log(event.data)
-            console.log('inside custom html file')
-            if (event.data.mceAction === 'customInsertAndClose2') {
-                var value = {
-                    // variableA: this.document.getElementById('variableA').textContent,
-                    // valueA: this.document.getElementById('valueA').textContent,
-                    imageValue: document.getElementById('imageselect').value,
-                    
-                    // videoValue:document.getElementById('videoselect').value,
-                    // audioValue:document.getElementById('audioselect').value
-                };
-                console.log(origin);
-                window.parent.postMessage({
-                    mceAction: 'execCommand',
-                    cmd: 'imageCommand1',
-                    value
-                }, origin);
-
-                window.parent.postMessage({
-                    mceAction: 'close'
-                }, origin);
-               // event.data.callback(value.imageValue);
-            }
-
-        });
-
-        window.onload = function () {
-
-            document.getElementById('showMeA').addEventListener('click', function (event) {
-                var value = {
-                    variableA: document.getElementById('variableA').textContent,
-                    valueA: document.getElementById('valueA').textContent
-                };
-
-                window.parent.postMessage({
-                    mceAction: 'execCommand',
-                    cmd: 'iframeCommand',
-                    value
-                }, origin);
-
-                window.parent.postMessage({
-                    mceAction: 'close'
-                }, origin);
-
-            });
-
-            document.getElementById('showMeB').addEventListener('click', function (event) {
-                var value = {
-                    variableA: document.getElementById('variableB').textContent,
-                    valueA: document.getElementById('valueB').textContent
-                };
-
-                window.parent.postMessage({
-                    mceAction: 'execCommand',
-                    cmd: 'iframeCommand',
-                    value
-                }, origin);
-
-                window.parent.postMessage({
-                    mceAction: 'close'
-                }, origin);
-
-            });
-
-            document.getElementById('showMeC').addEventListener('click', function (event) {
-                var value = {
-                    variableA: document.getElementById('variableC').textContent,
-                    valueA: document.getElementById('valueC').textContent
-                };
-
-                window.parent.postMessage({
-                    mceAction: 'execCommand',
-                    cmd: 'iframeCommand',
-                    value
-                }, origin);
-
-                window.parent.postMessage({
-                    mceAction: 'close'
-                }, origin);
-
-            });
-
-            // document.getElementById('imageselect').addEventListener('click',function(event){
-            //     var value = {
-            //         imageValue : document.getElementById('imageselect').value
-            //     };
-
-            //     window.parent.postMessage({
-            //         mceAction:'execCommand',
-            //         cmd:'imageCommand',
-            //         value
-            //     },origin);
-            // });
-
-
-        }
-
-
-
-    </script>
+    <script src="tinyDemo.js"></script>
+    
 </head>
 
 <body>
+
     <table class="table table-hover">
+
         <thead>
             <tr>
-                <th scope="col">Value</th>
                 <th scope="col">Variable</th>
+                <th scope="col">Value</th>
             </tr>
         </thead>
+
         <tbody>
             <tr id="showMeA">
                 <th scope="row" id="variableA">a</th>
@@ -133,63 +36,35 @@
                 <th scope="row" id="variableC">c</th>
                 <td id="valueC">40</td>
             </tr>
-
-
         </tbody>
+
     </table>
 
-    <select name="imageselect" id="imageselect">
+    <select name="imageselect" id="imageselect" onchange="showPreview()">
+
         <option
             value="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTxEOVTcvf8wEI1bGPVZrCVADRvWGpFsVzrowss8S1SuQl_xJjK">
             image 1</option>
+
         <option
             value="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRvkzEJUeQs1_Pk0D8dncJ7EHpJfPKh6hAy8iEFbpME8imSiQBn">
             image 2</option>
+
         <option value="http://www.titikshapublicschool.com/wp-content/uploads/2018/11/developer-api.jpg">Jpg image
         </option>
+
         <option value="https://pngimage.net/wp-content/uploads/2018/06/images-in-png-format-3.png">Png image</option>
         <option
             value="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRRsovFwEKRJUvD402fEibgts66eI2JFW0IZKIfXQ00uL_fYLQT">
             Tiff image</option>
         <option value="https://gifimage.net/wp-content/uploads/2017/11/gif-format-images-1.gif">Gif</option>
-        <option value="./assets/demo/wordcloud_modi.png">local image</option>
-        <option value="./assets/demo/wordcloud.png">local image2</option>
+        <option value="../../assets/demo/assets/resources/wordcloud_modi.png">local image</option>
+        <option value="../../assets/demo/assets/resources/wordcloud.png">local image2</option>
 
     </select>
 
+    <span id="preview"></span>
 
-    <!-- <select name="videoselect" id="videoselect">
-        <option value="./assets/demo/mov_bbb.mp4">mp4 video</option>
-    </select>
-
-
-    <select name="audioselect" id="audioselect">
-        <option value="./assets/demo/LoSafar.mp3">mp3 audio</option>
-    </select> -->
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-<!-- // this.document.getElementById('insert-content').addEventListener('click', function (event) {
-// var value = {
-// variableA: this.document.getElementById('variableA').textContent,
-// valueA: this.document.getElementById('valueA').textContent
-// };
-
-// window.parent.postMessage({
-// mceAction: 'execCommand',
-// cmd: 'iframeCommand',
-// value
-// }, origin);
-
-// }); -->

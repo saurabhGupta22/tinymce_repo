@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TinymceSService } from './tinymce-s.service';
-
-
+import { TinymceSService } from './services/tinymce-s.service';
 
 @NgModule({
   declarations: [

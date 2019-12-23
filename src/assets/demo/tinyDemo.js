@@ -1,11 +1,33 @@
 
- window.addEventListener('message', function (event) {
-    console.log(event.data)
-    if (event.data.mceAction === 'customInsertAndClose') {
+
+window.addEventListener('message', function (event) {
+    if (event.data.mceAction === 'customInsertAndClose2') {
         var value = {
-            variableA: this.document.getElementById('variableA').textContent,
-            valueA: this.document.getElementById('valueA').textContent
+            imageValue: document.getElementById('imageselect').value
         };
+        window.parent.postMessage({
+            mceAction: 'execCommand',
+            cmd: 'imageCommand1',
+            value
+        }, origin);
+
+        window.parent.postMessage({
+            mceAction: 'close'
+        }, origin);
+
+    }
+
+});
+
+
+window.onload = function () {
+
+    document.getElementById('showMeA').addEventListener('click', function (event) {
+        var value = {
+            variableA: document.getElementById('variableA').textContent,
+            valueA: document.getElementById('valueA').textContent
+        };
+
         window.parent.postMessage({
             mceAction: 'execCommand',
             cmd: 'iframeCommand',
@@ -15,35 +37,56 @@
         window.parent.postMessage({
             mceAction: 'close'
         }, origin);
-    }
 
-});
-document.getElementById('showMe').addEventListener('click', function (event) {
-    var value = {
-        variableA: this.document.getElementById('variableA').textContent,
-        valueA: this.document.getElementById('valueA').textContent
-    };
+    });
 
-    window.parent.postMessage({
-        mceAction: 'execCommand',
-        cmd: 'iframeCommand',
-        value
-    }, origin);
+    document.getElementById('showMeB').addEventListener('click', function (event) {
+        var value = {
+            variableA: document.getElementById('variableB').textContent,
+            valueA: document.getElementById('valueB').textContent
+        };
 
-});
+        window.parent.postMessage({
+            mceAction: 'execCommand',
+            cmd: 'iframeCommand',
+            value
+        }, origin);
+
+        window.parent.postMessage({
+            mceAction: 'close'
+        }, origin);
+
+    });
+
+    document.getElementById('showMeC').addEventListener('click', function (event) {
+        var value = {
+            variableA: document.getElementById('variableC').textContent,
+            valueA: document.getElementById('valueC').textContent
+        };
+
+        window.parent.postMessage({
+            mceAction: 'execCommand',
+            cmd: 'iframeCommand',
+            value
+        }, origin);
+
+        window.parent.postMessage({
+            mceAction: 'close'
+        }, origin);
+
+    });
 
 
 
-// showMeA = function () {
-//     console.log(document.getElementById('valueA').textContent);
-//     console.log(document.getElementById('variableA').textContent);
-//     return 'dfsdf';
-// }
-// showMeB = function () {
-//     console.log(document.getElementById('valueB').textContent);
-//     console.log(document.getElementById('variableB').textContent);
-// }
-// showMeC = function () {
-//     console.log(document.getElementById('valueC').textContent);
-//     console.log(document.getElementById('variableC').textContent);
-// }
+}
+
+var preview = document.createElement("IMG");
+
+function showPreview() {
+    var source = document.getElementById('imageselect').value;
+    preview.setAttribute("src", source);
+    preview.setAttribute("width", "100");
+    preview.setAttribute("height", "100")
+    document.getElementById("preview").appendChild(preview);
+
+}
