@@ -1,0 +1,27 @@
+<div class="question__block">
+  <div class='part-container'>
+    <h4 class='part-level'>Part level Description :</h4>
+    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesettingLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+    text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+  </div>
+  <button class="question__btn ET__btn" (click)="saveInternalQuestion()">{{saveBtnText}}</button> <br>
+  <p>Part {{quesNoIndex}} :</p>
+  <div *ngIf="this.mode === 'design' && availablePath.length > 0 " >
+      <span>Available path for part {{quesNoIndex}}</span>
+      <br>
+      <li *ngFor="let data of availablePath">
+        <input type="checkbox" value= {{data}} (change)="pathSelected($event)"> {{data}}
+      </li>
+  </div>
+  
+</div>
+<div class='iframeContainer'>
+  <!-- <p>This is question {{questionNo}}</p> -->
+</div>
+
+<div *ngIf="this.mode === 'design'">
+  <button class="question__btn ET__btn" (click)="loadAlternateAnswer()" *ngIf="showAlterButton">Load Alternate Answer</button>
+</div>
+
+<div #altAns>
+</div>

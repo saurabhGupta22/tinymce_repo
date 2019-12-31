@@ -1,0 +1,21 @@
+li {
+  display: inline-block;
+  margin: 20px;
+}
+
+p {
+  font-weight : bold;
+}
+.part-level {
+  padding: 10px;
+}
+.part-container {
+  background-color: #dbd6d8;
+}
+.part-container span {
+  padding: 0px 20px 20px;
+  display: inline-block;
+}
+.part-container h4 {
+  margin-bottom: 0;
+}

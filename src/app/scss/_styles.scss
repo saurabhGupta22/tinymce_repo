@@ -1,0 +1,113 @@
+//MHE style guide imports
+@import '../../../node_modules/@mhe/ngx-shared/themekit.scss';
+@import '../../../node_modules/@mhe/openlearning-themekit-icons/icon-base.scss';
+@import '../../../node_modules/@mhe/openlearning-themekit-icons/icons.scss';
+
+
+//Our customize style imports
+@import './variables';
+@import './spacing';
+@import './border';
+@import './btn_icons';
+@import './display';
+@import './font-extents';
+@import './ngx-shared-override';
+
+
+//Common & generic style starts
+.body-wrapper {
+  height: 100%;
+  padding-top: 52px;
+  overflow: hidden;
+  z-index: 0;
+
+  .left-side-container {
+    padding: 50px 0 0;
+    transition: all 0.35s ease-in-out;
+    height: 100%;
+    width: 100%;
+    .body-header {
+      background-color: $white;
+      position: fixed;
+      top: 52px;
+      width: 100%;
+    }
+    .body-contents {
+      padding: 25px 20px;
+      overflow-y: auto;
+      height: 100%;
+    }
+    .ngx-shared {
+      &.btn-tertiary {
+        margin: 2px 0;
+      }
+    }
+  }
+
+  .right-side-container {
+    border-left: 1px solid $gray-03;
+    position: fixed;
+    padding: 0;
+    height: 100%;
+    right: -375px;
+    transition: all 0.25s ease-in-out;
+    top: 52px;    
+    width: 372px;
+    .panel-expand {
+      position: absolute !important;
+      top: 8px;
+      height: 32px;
+      padding: 0;
+      left: -48px;
+      cursor: pointer;
+      width: 32px;
+      transition: all 0.25s ease-in-out;
+      .btn.ngx-shared {
+        height: 38px;
+        padding: 0 8px;
+        width: 38px;
+      }
+    }
+    .panel-header {
+      background-color: $dark-blue-40;
+      padding: 15px 20px 15px 52px;
+      height: 49px;
+    }
+    .panel-body {
+      padding: 0;
+      .tabs-container {
+        .nav-tabs {
+          border-bottom: 1px solid $gray-03;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &.right-panel-active {
+    .left-side-container {
+      padding-right: 372px;
+      .body-header {
+        width: calc(100% - 372px);
+      }
+    }
+    .right-side-container {
+      right: 0;
+      width: 372px;
+      .panel-expand {
+        left: 10px;
+        top: 7px;
+      }
+    }
+  }
+}
+
+.required {
+  color: $heritage-red-100;
+}
+.seperator {
+  color: $gray-05;
+  display: inline-block;
+  font-size: 2rem;
+  line-height: normal;
+}

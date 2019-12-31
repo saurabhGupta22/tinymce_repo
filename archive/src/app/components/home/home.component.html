@@ -1,0 +1,13 @@
+
+<div *ngIf='designMode'>
+  <span>Choose the tool:</span>
+  <select class="ET__select" (change)="toolOption($event.target.value)">
+    <option>Select the tool</option>
+    <option *ngFor="let tool of toolTypes" [value]="tool.toolName"> {{tool.toolName}}</option>
+  </select>
+  <button *ngIf='!questionLoaded && toolLoad' class="ET__btn" (click)="loadTool(toolSelect)">Load Part</button>
+  <button *ngIf='questionLoaded' (click)="loadTool(toolSelect)" class="ET__btn">Load Another Part</button>
+  <!-- <button *ngIf='questionLoaded' (click)="showDecisionMap()" class="ET__btn">Load decision Map</button> -->
+</div>
+<app-question #child></app-question>
+<!-- <app-decision-map></app-decision-map> -->

@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="tinyDemo_media.js"></script>
+</head>
+
+<body>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Value</th>
+                <th scope="col">Variable</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="showMeA">
+                <th scope="row" id="variableA">a</th>
+                <td id="valueA">20</td>
+            </tr>
+            <tr id="showMeB">
+                <th scope="row" id="variableB">b</th>
+                <td id="valueB">30</td>
+            </tr>
+            <tr id="showMeC">
+                <th scope="row" id="variableC">c</th>
+                <td id="valueC">40</td>
+            </tr>
+
+
+        </tbody>
+    </table>
+
+
+    <select name="videoselect" id="videoselect" onchange="previewVideo()">
+        <option value="https://youtu.be/L0MK7qz13bU">Youtube Video</option>
+        <option value="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4">video</option>
+        <option value="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4">video 2</option>
+        <option value="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4">video 3</option>
+        <option value="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4">video 4</option>
+        <option value="../../assets/demo/assets/resources/mov_bbb.mp4">mp4 video</option>
+        <option value="../../assets/demo/assets/resources/demoVideo.mp4">mp4 video 2</option>
+        <option value="../../assets/demo/assets/resources/BigBuckBunny.mp4">mp4 video 3</option>
+    </select>
+
+
+    <select name="audioselect" id="audioselect">
+        <option value="../../../../assets/demo/assets/resources/LoSafar.mp3">mp3 audio</option>
+    </select>
+    <span id="preview"></span>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- // this.document.getElementById('insert-content').addEventListener('click', function (event) {
+// var value = {
+// variableA: this.document.getElementById('variableA').textContent,
+// valueA: this.document.getElementById('valueA').textContent
+// };
+
+// window.parent.postMessage({
+// mceAction: 'execCommand',
+// cmd: 'iframeCommand',
+// value
+// }, origin);
+
+// }); -->

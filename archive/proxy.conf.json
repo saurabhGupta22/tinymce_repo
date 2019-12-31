@@ -1,0 +1,6 @@
+{
+    "/mhe-access": {
+      "target": "http://localhost",
+      "secure": false
+    }
+  }

@@ -1,0 +1,40 @@
+@import './variables';
+
+.q-parts-header {
+  .btn-tertiary {
+    padding: 0 8px;
+  }
+  .score-inputs {  
+    .ahe-ui.form-group {
+      display: inline-block;
+      position: relative;
+      margin: 0 10px;
+      .form-control {
+        display: inline-block;
+        margin-left: 10px;
+        width: 65px;
+      }
+      &.has-error {
+        .form-control {
+          border: 1px solid $heritage-red-100;
+        }
+        .help-block {
+          color: $heritage-red-100;
+          position: absolute;
+          left: 60px;
+          top: 32px;
+          width: 300px;
+        }
+      }
+    }
+  }
+}
+
+.add-answer-selection {
+  width: 196px;
+  .dropdown {
+    .dropdown-menu {
+      width: 196px;
+    }
+  }
+}

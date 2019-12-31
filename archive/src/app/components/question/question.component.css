@@ -1,0 +1,7 @@
+.question__block .question__btn{
+    display: none;
+}
+
+.question__block.show--btn .question__btn{
+    display: block;
+}

@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+.ET__btn {
+  color: #fff;
+  background-color: #007dc1;
+  background: linear-gradient(#007dc1, #0073b2);
+  box-shadow: rgba(0, 0, 0, 0.15) 0 1px 0, rgba(255, 255, 255, 0.1) 0 1px 0 0 inset;
+  border: transparent;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: block;
+  margin-top: 15px;
+}
+
+.ET__select {
+  display: block;
+}
