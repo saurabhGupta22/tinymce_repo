@@ -1,0 +1,70 @@
+<html>
+
+<head>
+
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="tinyDemo.js"></script>
+    
+</head>
+
+<body>
+
+    <table class="table table-hover">
+
+        <thead>
+            <tr>
+                <th scope="col">Variable</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr id="showMeA">
+                <th scope="row" id="variableA">a</th>
+                <td id="valueA">20</td>
+            </tr>
+            <tr id="showMeB">
+                <th scope="row" id="variableB">b</th>
+                <td id="valueB">30</td>
+            </tr>
+            <tr id="showMeC">
+                <th scope="row" id="variableC">c</th>
+                <td id="valueC">40</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <select name="imageselect" id="imageselect" onchange="showPreview()">
+
+        <option
+            value="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTxEOVTcvf8wEI1bGPVZrCVADRvWGpFsVzrowss8S1SuQl_xJjK">
+            image 1</option>
+
+        <option
+            value="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRvkzEJUeQs1_Pk0D8dncJ7EHpJfPKh6hAy8iEFbpME8imSiQBn">
+            image 2</option>
+
+        <option value="http://www.titikshapublicschool.com/wp-content/uploads/2018/11/developer-api.jpg">Jpg image
+        </option>
+
+        <option value="https://pngimage.net/wp-content/uploads/2018/06/images-in-png-format-3.png">Png image</option>
+        <option
+            value="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRRsovFwEKRJUvD402fEibgts66eI2JFW0IZKIfXQ00uL_fYLQT">
+            Tiff image</option>
+        <option value="https://gifimage.net/wp-content/uploads/2017/11/gif-format-images-1.gif">Gif</option>
+        <option value="../../assets/demo/assets/resources/wordcloud_modi.png">local image</option>
+        <option value="../../assets/demo/assets/resources/wordcloud.png">local image2</option>
+
+    </select>
+
+    <span id="preview"></span>
+
+</body>
+
+</html>
