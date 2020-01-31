@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="imagesMedia.css  ">
+  <script type="text/javascript" src="imagesMedia.js"></script>
+</head>
+
+<body>
+  <div>
+    <select onchange="filterSelection(value)">
+      <option value="all">ShowAll</option>
+      <option value="mp4">MP4</option>
+      <option value="mp3">MP3</option>
+      <option value="png">PNG</option>
+      <option value="jpg">JPG</option>
+      <option value="tiff">TIFF</option>
+      <option value="gif">GIF</option>
+    </select>
+  </div>
+
+  <div>
+    <ul class="list-group" id="ulContainer">
+      <li class="list-group-item filterList mp4 active" type="video" value="../../assets/demo/assets/resources/mov_bbb.mp4">Local
+        Video 1</li>
+      <li class="list-group-item filterList mp4" type="video" value="../../assets/demo/assets/resources/demoVideo.mp4">Local Video 2
+      </li>
+
+      <li class="list-group-item filterList mp4" type="video"
+        value="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Big Buck Bunny</li>
+
+      <li class="list-group-item filterList mp4" type="video"
+        value="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4">Elephant Dream</li>
+
+      <li class="list-group-item  filterList mp3" type="audio" value="../../assets/demo/assets/resources/LoSafar.mp3">Local Audio
+      </li>
+
+      <li class="list-group-item filterList jpg" type="image"
+        value="http://www.titikshapublicschool.com/wp-content/uploads/2018/11/developer-api.jpg">
+        http://www.titikshapublicschool.com/wp-content/uploads/2018/11/developer-api.jpg</li>
+
+      <li class="list-group-item filterList png" type="image"
+        value="https://pngimage.net/wp-content/uploads/2018/06/images-in-png-format-3.png">Png image</li>
+
+      <li class="list-group-item filterList tiff" type="image"
+        value="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRRsovFwEKRJUvD402fEibgts66eI2JFW0IZKIfXQ00uL_fYLQT">
+        Tiff image</li>
+ 
+      <li class="list-group-item filterList gif" type="image"
+        value="https://gifimage.net/wp-content/uploads/2017/11/gif-format-images-1.gif">
+        Gif</li>
+
+    </ul>
+  </div>
+
+  <script>
+
+    var fileUrl
+    $('.list-group-item').on('click', function () {
+       fileUrl = $(this).attr('value');
+       type = $(this).attr('type')
+      console.log(fileUrl);
+      value = {
+        Url:fileUrl,
+        type:type
+      }
+
+        var args = top.tinymce.activeEditor.windowManager.getParams();
+        if(args.mceAction === 'customInsertAndClose3'){
+          top.tinymce.activeEditor.execCommand('mediaCommand',value);
+          top.tinymce.activeEditor.windowManager.close();
+        }
+      
+    });
+
+  </script>
+
+
+
+
+</body>
+
+</html>

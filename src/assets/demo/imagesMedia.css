@@ -1,0 +1,15 @@
+li:hover{
+    background-color: lightgray;
+}
+
+.filterList.active {
+    background-color: rgb(211, 232, 238);
+    color: black;
+  }
+.show {
+    display: block;
+  }
+  .filterList {
+
+    display: none;
+  }  
