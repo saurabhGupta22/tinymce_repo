@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 declare var tinymce;
+import * as $ from 'jquery';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +11,9 @@ export class TinymceService {
   doIt() {
 
     var ed;
+    var createHtml;
+    var register;
+    var ecoMapping;
     tinymce.init({
       selector: 'textarea.urldialog',
       height: 500,
@@ -23,91 +27,114 @@ export class TinymceService {
       }
     });
 
-    var imageList = [{
-      text:'airplane',
-      value:'https://homepages.cae.wisc.edu/~ece533/images/airplane.png'
-    },{
-      text:'rabbit',
-      value:'https://homepages.cae.wisc.edu/~ece533/images/arctichare.png'
-    },{
-      text: 'gif',
-      value: 'https://media.giphy.com/media/gw3IWyGkC0rsazTi/giphy.gif'
-    }]
+    function Dialog(editor) {
+
+      function open() {
+        showDialog([{
+          text: 'airplane',
+          value: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png'
+        }, {
+          text: 'rabbit',
+          value: 'https://homepages.cae.wisc.edu/~ece533/images/arctichare.png'
+        }, {
+          text: 'gif',
+          value: 'https://media.giphy.com/media/gw3IWyGkC0rsazTi/giphy.gif'
+        }]);
+      }
+
+      function showDialog(imageList) {
+        var win = ed.windowManager.open({
+          title: 'Images',
+          autoScroll: false,
+          width: 500,
+          height: 500,
+          body: [
+            {
+              type: 'container', html: ecoMapping.createHtml(imageList)
+            }
+          ],
+          buttons: [{
+            text: 'Close',
+            onClick: 'close'
+          }]
+        });
+
+        var imageDivs = document.querySelectorAll('.mce-eco-image');
+        for (var i = 0; i < imageDivs.length; i++) {
+          imageDivs[i].addEventListener('click', function () {
+            // ed.insertContent('<span><img alt="Smiley face" height="100" width="100" src="' + this.getAttribute('src') + '"/></span>&nbsp;');
+            var textbox = document.querySelectorAll('.mce-textbox');
+            console.log(textbox[0]);
+            textbox[0].textContent = this.getAttribute('src');
+            var someid = textbox[0].id;
+            $('#' + someid).val(this.getAttribute('src'));
+            win.close();
+          });
+        }
+      }
+
+      return { open: open }
+    }
+
+
     var generalFormItems = [
       {
-        type:'container',
-        label:'Source',
-        layout:'flex',
-        direction:'row',
-        spacing:5,
-        items:[
+        type: 'container',
+        label: 'Source',
+        layout: 'flex',
+        direction: 'row',
+        spacing: 5,
+        items: [
           {
+            name: 'source',
             type: 'textbox',
-            label: 'textbox',
+            label: 'source',
             autofocus: true,
           },
           {
             name: 'button',
-            type:'button',
-            label:'button',
-            text:'Upload',
-            onclick: function(e){ed.windowManager.open({
-              title: 'Value and Variable',
-              url: '../assets/imageAndMedia.html',
-              buttons: [{
-                type: 'button',
-                name: 'insert-and-close',
-                text: 'Insert and Close',
-                primary: true,
-                align: 'end'
-              },
-              {
-                type: 'button',
-                name: 'cancel',
-                text: 'Close Dialog',
-                onclick(e) {ed.windowManager.close(); }
-              }
-      
-              ],
-      
-              height: 350,
-              width: 500,
-            })}
+            type: 'button',
+            label: 'button',
+            text: 'Upload',
+            onclick: Dialog(ed).open
           },
         ]
 
       },
-    
-      {name:'title', type: 'textbox', label: 'Image Title'},
-      {name: 'alt', type: 'textbox', label: 'Alternate text'},
-      {name: 'data-mce-p-longdesc', type : 'textbox',label:'Long Description', multiline:true},
+
+      { name: 'title', type: 'textbox', label: 'Image Title' },
+      { name: 'alt', type: 'textbox', label: 'Alternate text' },
+      { name: 'data-mce-p-longdesc', type: 'textbox', label: 'Long Description', multiline: true },
       {
         type: 'container',
-                label: 'Dimensions',
-                layout: 'flex',
-                direction: 'row',
-                align: 'center',
-                spacing: 5,
-                items: [
-                  { name: 'width', type: 'textbox', maxLength: 5, size: 3,ariaLabel: 'Width' },
-                  { type: 'label', text: 'x' },
-                  { name: 'height', type: 'textbox', maxLength: 5, size: 3, ariaLabel: 'Height' },
-                  { name: 'constrain', type: 'checkbox', checked: true, text: 'Constrain proportions' }
-                ]
+        label: 'Dimensions',
+        layout: 'flex',
+        direction: 'row',
+        align: 'center',
+        spacing: 5,
+        items: [
+          { name: 'width', type: 'textbox', maxLength: 5, size: 3, ariaLabel: 'Width' },
+          { type: 'label', text: 'x' },
+          { name: 'height', type: 'textbox', maxLength: 5, size: 3, ariaLabel: 'Height' },
+          { name: 'constrain', type: 'checkbox', checked: true, text: 'Constrain proportions' }
+        ]
       }
     ];
 
-    tinymce.PluginManager.add('example', function(editor,url){
-      editor.addButton('example',{
+    tinymce.PluginManager.add('example', function (editor, url) {
+      editor.addButton('example', {
         text: 'My Button',
         icon: false,
-        onclick: function(){
+        onclick: function () {
           editor.windowManager.open({
             title: 'Example PLugin',
             body: generalFormItems,
+            onsubmit: function (e) {
+              editor.insertContent('<span><img alt="Smiley face" height='+e.data.height+' width='+e.data.width+' src="' + e.data.source + '"/></span>&nbsp;');
+            }
           })
         }
-      })
+      });
     })
 
 
@@ -117,7 +144,7 @@ export class TinymceService {
 
     tinymce.PluginManager.add('image', function (editor, url) {
 
-      var createHtml = function (imageList) {
+      createHtml = function (imageList) {
         var contentDiv = document.createElement('div');
         contentDiv.setAttribute('class', 'mce-eco-panel-content');
         for (var imageIndex = 0; imageIndex < imageList.length; imageIndex++) {
@@ -138,7 +165,7 @@ export class TinymceService {
         return contentDiv.outerHTML;
       };
 
-      var register = function (editor) {
+      register = function (editor) {
         // Add a button that opens a window
         editor.addButton('image', {
           text: '',
@@ -157,13 +184,13 @@ export class TinymceService {
         editor.on('init', function () {
           var cssLink = editor.dom.create('link', {
             rel: 'stylesheet',
-            href: '../assets/style.css'
+            href: '../assets/assets/style.css'
           });
           document.getElementsByTagName('head')[0].appendChild(cssLink);
         });
       };
 
-      var ecoMapping = {
+      ecoMapping = {
         createHtml: createHtml,
         register: register
       };
@@ -172,12 +199,12 @@ export class TinymceService {
 
         function open() {
           showDialog([{
-            text:'airplane',
-            value:'https://homepages.cae.wisc.edu/~ece533/images/airplane.png'
-          },{
-            text:'rabbit',
-            value:'https://homepages.cae.wisc.edu/~ece533/images/arctichare.png'
-          },{
+            text: 'airplane',
+            value: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png'
+          }, {
+            text: 'rabbit',
+            value: 'https://homepages.cae.wisc.edu/~ece533/images/arctichare.png'
+          }, {
             text: 'gif',
             value: 'https://media.giphy.com/media/gw3IWyGkC0rsazTi/giphy.gif'
           }]);
